@@ -26,6 +26,8 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+This project is the Coffee app from [Nest official course](https://courses.nestjs.com/)
+
 ## Installation
 
 ```bash
