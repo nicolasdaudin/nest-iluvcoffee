@@ -57,6 +57,7 @@ export class CoffeesService {
   }
 
   async findAll(paginationQueryDto: PaginationQueryDto) {
+    console.log(`coffee service findAll`);
     // await new Promise(resolve => setTimeout(resolve, 1000));
     return this.coffeeRepository.find({
       relations: { flavors: true },
@@ -77,6 +78,7 @@ export class CoffeesService {
   }
 
   async create(createCoffeeDto: CreateCoffeeDto) {
+    console.log(`coffee service create`);
     const flavors = await Promise.all(
       createCoffeeDto.flavors.map((flavor) => this.preloadFlavorByName(flavor)),
     );
