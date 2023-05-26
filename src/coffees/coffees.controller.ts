@@ -24,37 +24,37 @@ export class CoffeesController {
 
   @Public()
   @Get()
-  findAll(@Protocol('https') protocol, @Query() paginationQueryDto: PaginationQueryDto) {
+  async findAll(@Protocol('https') protocol, @Query() paginationQueryDto: PaginationQueryDto) {
     // const { limit, offset } = paginationQuery;
     // return `This action returns all coffees : limit ${limit} and offset ${offset}`;
-    return this.coffeesService.findAll(paginationQueryDto);
+    return await this.coffeesService.findAll(paginationQueryDto);
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  async findOne(@Param('id', ParseIntPipe) id: number) {
     // return `This action returns coffee #${id}`;
     console.log(id);
-    return this.coffeesService.findOne('' + id);
+    return await this.coffeesService.findOne('' + id);
   }
 
   @Post()
   @UsePipes(CreateCoffeePipe)
-  create(@Body() createCoffeeDto: CreateCoffeeDto) {
+  async create(@Body() createCoffeeDto: CreateCoffeeDto) {
     // return body;
     // console.log(createCoffeeDto instanceof CreateCoffeeDto);
-    this.coffeesService.create(createCoffeeDto);
+    await this.coffeesService.create(createCoffeeDto);
     return createCoffeeDto;
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
-    return this.coffeesService.update(id, updateCoffeeDto);
+  async update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
+    return await this.coffeesService.update(id, updateCoffeeDto);
     // return `This action updates coffee #${id}`;
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     // return `This action deletes coffeee #${id}`;
-    return this.coffeesService.remove(id);
+    return await this.coffeesService.remove(id);
   }
 }

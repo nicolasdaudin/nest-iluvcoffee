@@ -59,8 +59,25 @@ describe('[Feature] Coffees - /coffees', () => {
       expect(receivedCoffees[0].name).toEqual(coffee.name);
     });
   });
-  // WEIRD: ça marche pas mais si j'enlève le test de CREATE ça marche .... 
-  it.todo('Get one [GET /:id]');
+  // WEIRD: TOUT marche lorsque CREATE est désactivé .... mais si j'active, alors j'a icette erreur :
+  // 
+
+  it('Get one [GET /:id]', () => {
+    return request(httpServer).get('/coffees/1').then(({ body }) => {
+      console.log({ body });
+      const receivedCoffees = body.data;
+      expect(receivedCoffees.name).toEqual(coffee.name);
+    });
+  });
+
+  it('Get one [GET /:id] - Unexisting id', () => {
+    return request(httpServer).get('/coffees/-1').then(({ body }) => {
+
+      expect(body.statusCode).toEqual(HttpStatus.NOT_FOUND);
+      expect(body.message).toEqual('Coffee -1 not found');
+    });
+  });
+
   it.todo('Update one [PATCH /:id]');
   it.todo('Delete one [DELETE /:id]');
 

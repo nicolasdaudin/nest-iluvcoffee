@@ -46,14 +46,14 @@ export class CoffeeBrandsFactoryClass {
 @Module({
   imports: [
     TypeOrmModule.forFeature([Coffee, Flavor, Event]),
-    DatabaseModule.register({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres', // username
-      password: 'pass123',
-      // user password
-    }),
+    // DatabaseModule.register({
+    //   type: 'postgres',
+    //   host: 'localhost',
+    //   port: 5432,
+    //   username: 'postgres', // username
+    //   password: 'pass123',
+    //   // user password
+    // }),
     ConfigModule.forFeature(coffeesConfig),
   ],
 
